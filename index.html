@@ -7,10 +7,21 @@
 
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/fontawesome.css">
+    <link rel="stylesheet" href="./css/animate.css">
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
     <body>
+
+
+        <div class="container-mensagens" id="container-mensagens">
+
+        </div>
+
+        <a class="botao-carrinho hidden" onclick="cardapio.metodos.abrirCarrinho(true)">
+            <div class="badge-total-carrinho"></div>
+            <i class="fa fa-shopping-bag"></i>
+        </a>
         <section class="header">
             <div class="container">
                 <nav class="navbar navbar-expand-lg pl-0 pr-0 ">
@@ -37,8 +48,9 @@
                                 <a href="#depoimentos" class="nav-link"><b>Depoimentos</b></a>
                             </li>
                         </ul>
-                        <a class="btn btn-white btn-icon">Meu Carrinho 
-                            <span class="icon">                                
+                        <a class="btn btn-white btn-icon" onclick="cardapio.metodos.abrirCarrinho(true)">
+                            Meu Carrinho <span class="icon">
+                                <div class="container-total-carrinho badge-total-carrinho hidden"></div>                                
                                 <i class="fa fa-shopping-bag"></i>
                             </span>
                         </a>
@@ -165,115 +177,33 @@
                         </h1>
                     </div>
                         <div class="col-12 container-menu">
-                            <a class="btn btn-white btn-sm mr-3">
+                            <a id="menu-burgers" class="btn btn-white btn-sm mr-3 active" onclick="cardapio.metodos.obterItensCardapio('burgers')" >
                                 <i class="fas fa-hamburger"></i>&nbsp; Burgers
                             </a>
-                            <a class="btn btn-white btn-sm mr-3">
+                            <a id="menu-pizzas" class="btn btn-white btn-sm mr-3 " onclick="cardapio.metodos.obterItensCardapio('pizzas')">
                                 <i class="fas fa-pizza-slice"></i>&nbsp; Pizzas
                             </a>
-                            <a class="btn btn-white btn-sm mr-3">
+                            <a id="menu-churrasco" class="btn btn-white btn-sm mr-3" onclick="cardapio.metodos.obterItensCardapio('churrasco')">
                                 <i class="fas fa-drumstick-bite"></i>&nbsp; Churrasco
                             </a>
-                            <a class="btn btn-white btn-sm mr-3">
+                            <a id="menu-steaks" class="btn btn-white btn-sm mr-3" onclick="cardapio.metodos.obterItensCardapio('steaks')">
                                 <i class="fas fa-bacon"></i>&nbsp; Steaks
                             </a>
-                            <a class="btn btn-white btn-sm mr-3">
+                            <a id="menu-bebidas" class="btn btn-white btn-sm mr-3" onclick="cardapio.metodos.obterItensCardapio('bebidas')">
                                 <i class="fas fa-cocktail"></i>&nbsp; Bebidas
                             </a>
-                            <a class="btn btn-white btn-sm mr-3">
+                            <a id="menu-sobremesas" class="btn btn-white btn-sm mr-3" onclick="cardapio.metodos.obterItensCardapio('sobremesas')">
                                 <i class="fas fa-ice-cream"></i>&nbsp; Sobremesas
                             </a>
                         </div>
                         <div class="col-12">
-                            <div class="row" id="itensCardapoio">
+                            <div class="row" id="itensCardapio"></div>
 
-                                <div class="col-3 mb-3">
-                                    <div class="card card-item">
-                                        <div class="img-produto">
-                                            <img src="./img/cardapio/burguers/burger-au-poivre-kit-4-pack.3ca0e39b02db753304cd185638dad518.jpg" />
-                                        </div>
-                                        <p class="title-produto text-center mt-4">
-                                            <b>Nome muito grande pra caralho</b>
-                                        </p>
-                                        <p class="price-produto text-center">
-                                            <b>R$ 499,90</b>
-                                        </p>
-                                         <div class="add-carrinho">
-                                            <span class="btn-menos"><i class="fas fa-minus"></i></span>
-                                            <span class="add-numero-itens">0</span>
-                                            <span class="btn-mais"><i class="fas fa-plus"></i></span>
-                                            <span class="btn btn-add"><i class="fa fa-shopping-bag"></i></span>
 
-                                         </div>   
-                                    </div>
-                                </div>
-                                <div class="col-3 mb-3">
-                                    <div class="card card-item">
-                                        <div class="img-produto">
-                                            <img src="./img/cardapio/burguers/burger-au-poivre-kit-4-pack.3ca0e39b02db753304cd185638dad518.jpg" />
-                                        </div>
-                                        <p class="title-produto text-center mt-4">
-                                            <b>Nome muito grande pra caralho</b>
-                                        </p>
-                                        <p class="price-produto text-center">
-                                            <b>R$ 499,90</b>
-                                        </p>
-                                         <div class="add-carrinho">
-                                            <span class="btn-menos"><i class="fas fa-minus"></i></span>
-                                            <span class="add-numero-itens">0</span>
-                                            <span class="btn-mais"><i class="fas fa-plus"></i></span>
-                                            <span class="btn btn-add"><i class="fa fa-shopping-bag"></i></span>
 
-                                         </div>   
-                                    </div>
-                                </div>
-                                <div class="col-3 mb-3">
-                                    <div class="card card-item">
-                                        <div class="img-produto">
-                                            <img src="./img/cardapio/burguers/burger-au-poivre-kit-4-pack.3ca0e39b02db753304cd185638dad518.jpg" />
-                                        </div>
-                                        <p class="title-produto text-center mt-4">
-                                            <b>Nome muito grande pra caralho</b>
-                                        </p>
-                                        <p class="price-produto text-center">
-                                            <b>R$ 499,90</b>
-                                        </p>
-                                         <div class="add-carrinho">
-                                            <span class="btn-menos"><i class="fas fa-minus"></i></span>
-                                            <span class="add-numero-itens">0</span>
-                                            <span class="btn-mais"><i class="fas fa-plus"></i></span>
-                                            <span class="btn btn-add"><i class="fa fa-shopping-bag"></i></span>
-
-                                         </div>   
-                                    </div>
-                                </div>
-                                <div class="col-3 mb-3">
-                                    <div class="card card-item">
-                                        <div class="img-produto">
-                                            <img src="./img/cardapio/burguers/burger-au-poivre-kit-4-pack.3ca0e39b02db753304cd185638dad518.jpg" />
-                                        </div>
-                                        <p class="title-produto text-center mt-4">
-                                            <b>Nome muito grande pra caralho</b>
-                                        </p>
-                                        <p class="price-produto text-center">
-                                            <b>R$ 499,90</b>
-                                        </p>
-                                         <div class="add-carrinho">
-                                            <span class="btn-menos"><i class="fas fa-minus"></i></span>
-                                            <span class="add-numero-itens">0</span>
-                                            <span class="btn-mais"><i class="fas fa-plus"></i></span>
-                                            <span class="btn btn-add"><i class="fa fa-shopping-bag"></i></span>
-
-                                         </div>   
-                                    </div>
-                                </div>
-                                                       
-                              
-
-                            </div>
                         </div>
                         <div class="col-12 text-center">
-                            <a class="btn btn-white btn-sm">
+                            <a id="btnVerMais" class="btn btn-white btn-sm" onclick="cardapio.metodos.verMais()" >
                                 Ver mais
                             </a>
                         </div>
@@ -385,13 +315,279 @@
             </div>
         </section>
         <section class="reserva" id="reservas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card-secondary">
+
+                            <div class="row">
+                                <div class="col-7">
+                                    <span class="hint-title"><b>Reserva</b></span>
+                                    <h1 class="title">
+                                        <b>Quer reservar um horário?</b>
+                                    </h1>
+                                    <p class="pr-5">
+                                        Mande uma mensagem clicando no botão abaixo
+                                        <br>
+                                        Reserve sua data e horário de forma simples e rápida
+                                    </p>
+                                    <a class="btn btn-yellow mt-4">
+                                        Fazer reserva
+                                    </a>
+                                </div>
+                                <div class="col-5">
+                                    <div class="card-reserva"></div>
+                                    <div class="d-flex img-banner">
+                                        <img src="./img/icone-reserva.svg" alt="">
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             
         </section>
         <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 container-logo-footer">
+                        <img class="logo-footer" src="./img/logo.png" alt="">
+                    </div>
+                    <div class="col-6 container-texto-footer">
+                        <p class="mb-0">
+                            <b>Menu On-line</b> &copy; Todos os direitos reservados
+                        </p>
+                        
+                    </div>
+                    <div class="col-3 container-redes-footer">
+                            <a class="btn btn-sm btn-white btn-social  mr-3">
+                                <i class="fab fa-instagram"></i>
+                            </a>    
+                            <a class="btn btn-sm btn-white btn-social  mr-3">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>   
+                            <a class="btn btn-sm btn-white btn-social  mr-3">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>                        
+                    </div>
+
+                </div>
+            </div>
 
         </footer>
 
+        <div class="modal-full hidden" id="modalCarrinho">
 
+            <div class="m-header">
+                <div class="container">
+                    <a class="btn btn-white btn-sm float-right" onclick="cardapio.metodos.abrirCarrinho(false)">
+                        Fechar
+                    </a>
+                    <div class="etapas">
+                        <div class="etapa etapa1 active">1</div>
+                        <div class="etapa etapa2">2</div>
+                        <div class="etapa etapa3">3</div>
+                    </div>
+                    <p class="title-carrinho mt-4">
+                        <b id="lblTituloEtapa">Seu carrinho</b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="m-body">
+                <div class="container">
+
+                    <div id="itensCarrinho" class="row mr-0 ml-0 hidden"></div>
+
+
+                    <div id="localEntrega" class="row mr-0 ml-0 hidden ">
+                        <div class="col-4">
+                            <div class="form-group container-cep">
+                                <label>CEP:</label>
+                                <input id="txtCEP" type="text" class="form-control" />
+                                <a class="btn btn-yellow btn-sm"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-8"></div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Endereço:</label>
+                                <input id="txtEndereco" type="text" class="form-control" />
+                            </div>
+                        
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Bairro:</label>
+                                <input id="txtBairro" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label>Número:</label>
+                                <input id="txtNumero" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                            
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Cidade:</label>
+                                <input id="txtCidade" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Complemento:</label>
+                                <input id="txtComplemento" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label>UF:</label>
+                                <select id="ddlUF" class="form-control">
+                                    <option value="-1">...</option> 
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AP">AP</option>
+                                    <option value="AM">AM</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MT">MT</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MG">MG</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PR">PR</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RS">RS</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SP">SP</option>
+                                    <option value="SE">SE</option>
+                                    <option value="TO">TO</option>                                   
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div id="resumoCarrinho" class="row mr-0 ml-0 hidden">
+                        <div class="col-12">
+                            <p class="title-carrinho mt-4">
+                                <b>Itens do pedido:</b>
+                            </p>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row" id="listaItensResumo">
+
+                                <div class="col-12 item-carrinho resumo">
+                                    <div class="img-produto-resumo">
+                                        <img src="./img/cardapio/bebidas/guys-caliente-margaritas-for-12.ca8c6bc06b8f1039549385ffcebc749d.jpg" alt="">
+                                    </div>
+                                    <div class="dados-produto">
+                                        <p class="title-produto-resumo">
+                                            <b>Nome do Produto</b>
+                                        </p>
+                                        <p class="price-produto-resumo">
+                                            <b>R$ 15,00</b>
+                                        </p>
+                                    </div>
+                                    <p class="quantidade-produto-resumo"> x <b>3</b></p>
+
+                                </div>
+                                
+                                <div class="col-12">
+                                    <p class="title-carrinho mt-4">
+                                        <b>Local da Entrega:</b>
+                                    </p>
+                                </div>
+                                <div class="col-12 item-carrinho resumo">
+                                    <div class="img-map">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </div>
+                                    <div class="dados-produto">
+                                        <p class="texto-endereco">
+                                            <b>Rua Tá ligado, 14, bairro se liga</b>
+                                        </p>
+                                        <p class="cidade-endereco" id="cidadeEndereco">
+                                            Cidade-PI / 64800202
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="m-footer">
+                <div class="container">
+                    <div class="container-total text-right mb-4">
+                        <p class="mb-0"> 
+                            <span>Subtotal</span>
+                            <span id="lblSubTotal">R$ 90,00</span>
+                        </p>
+                        <p class="mb-0 texto-entrega"> 
+                            <span><i class="fas fa-motorcycle"></i> Entrega:</span>
+                            <span id="lblValorEntrega">+ R$ 5,00</span>
+                        </p>
+                        <p class="mb-0 texto-total"> 
+                            <span>Total</span>
+                            <span class="valor-total" id="lblValorTotal"><b>R$ 95,00</b></span>
+                        </p>
+                    </div>
+                    <a onclick="cardapio.metodos.carregarEtapa(2)" class="btn btn-yellow float-right" id="btnEtapaPedido" >
+                        Continuar 
+                    </a>
+                    <a onclick="cardapio.metodos.carregarEtapa(3)" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco" >
+                        Revisar Pedido 
+                    </a>
+                    <a class="btn btn-yellow float-right hidden" id="btnEtapaResumo" >
+                        Enviar Pedido
+                    </a>
+                    <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="btnVoltar" >
+                        Voltar
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
 
 
 
@@ -400,5 +596,8 @@
         <script type="text/javascript" src="./Js/modernizr-3.5.0.min.js"></script>
         <script type="text/javascript" src="./Js/popper.min.js"></script>
         <script type="text/javascript" src="./Js/index.js"></script>
+        <script type="text/javascript" src="./Js/dados.js"></script>
+        <script type="text/javascript" src="./Js/app.js"></script>
+
     </body>
 </html>
