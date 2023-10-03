@@ -416,7 +416,9 @@
                             <div class="form-group container-cep">
                                 <label>CEP:</label>
                                 <input id="txtCEP" type="text" class="form-control" />
-                                <a class="btn btn-yellow btn-sm"><i class="fa fa-search"></i></a>
+                                <a class="btn btn-yellow btn-sm" onclick="cardapio.metodos.buscarCep()">
+                                    <i class="fa fa-search"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -462,7 +464,7 @@
                         <div class="col-2">
                             <div class="form-group">
                                 <label>UF:</label>
-                                <select id="ddlUF" class="form-control">
+                                <select id="ddlUf" class="form-control">
                                     <option value="-1">...</option> 
                                     <option value="AC">AC</option>
                                     <option value="AL">AL</option>
@@ -497,9 +499,6 @@
 
                     </div>
 
-
-
-
                     <div id="resumoCarrinho" class="row mr-0 ml-0 hidden">
                         <div class="col-12">
                             <p class="title-carrinho mt-4">
@@ -508,51 +507,33 @@
                         </div>
 
                         <div class="col-12">
-                            <div class="row" id="listaItensResumo">
+                            <div class="row" id="listaItensResumo"> 
 
-                                <div class="col-12 item-carrinho resumo">
-                                    <div class="img-produto-resumo">
-                                        <img src="./img/cardapio/bebidas/guys-caliente-margaritas-for-12.ca8c6bc06b8f1039549385ffcebc749d.jpg" alt="">
-                                    </div>
-                                    <div class="dados-produto">
-                                        <p class="title-produto-resumo">
-                                            <b>Nome do Produto</b>
-                                        </p>
-                                        <p class="price-produto-resumo">
-                                            <b>R$ 15,00</b>
-                                        </p>
-                                    </div>
-                                    <p class="quantidade-produto-resumo"> x <b>3</b></p>
 
-                                </div>
-                                
-                                <div class="col-12">
-                                    <p class="title-carrinho mt-4">
-                                        <b>Local da Entrega:</b>
-                                    </p>
-                                </div>
-                                <div class="col-12 item-carrinho resumo">
-                                    <div class="img-map">
-                                        <i class="fas fa-map-marked-alt"></i>
-                                    </div>
-                                    <div class="dados-produto">
-                                        <p class="texto-endereco">
-                                            <b>Rua Tá ligado, 14, bairro se liga</b>
-                                        </p>
-                                        <p class="cidade-endereco" id="cidadeEndereco">
-                                            Cidade-PI / 64800202
-                                        </p>
-                                    </div>
-
-                                </div>
-
+                            </div> 
+                        </div>
+                               
+                            <div class="col-12">
+                                <p class="title-carrinho mt-4">
+                                    <b>Local da Entrega:</b>
+                                </p>
                             </div>
 
-                        </div>
+                            <div class="col-12 item-carrinho resumo">
+                                <div class="img-map">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <div class="dados-produto">
+                                    <p class="texto-endereco">
+                                        <b id="resumoEndereco"></b>
+                                    </p>
+                                    <p class="cidade-endereco" id="cidadeEndereco"></p>
+                                </div>
+                            </div> 
+
                     </div>
 
                 </div>
-
             </div>
 
             <div class="m-footer">
@@ -571,10 +552,10 @@
                             <span class="valor-total"> <b id="lblValorTotal">R$ 0,00</b></span>
                         </p>
                     </div>
-                    <a onclick="cardapio.metodos.carregarEtapa(2)" class="btn btn-yellow float-right" id="btnEtapaPedido" >
+                    <a onclick="cardapio.metodos.carregarEndereco()" class="btn btn-yellow float-right" id="btnEtapaPedido" >
                         Continuar 
                     </a>
-                    <a onclick="cardapio.metodos.carregarEtapa(3)" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco" >
+                    <a onclick="cardapio.metodos.resumoPedido()" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco" >
                         Revisar Pedido 
                     </a>
                     <a class="btn btn-yellow float-right hidden" id="btnEtapaResumo" >

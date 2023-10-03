@@ -607,7 +607,7 @@ footer {
     border: none!important;
 }
 
-.select .form-control{
+select.form-control{
     height: 60px!important;
 }
 
@@ -662,7 +662,7 @@ footer {
 }
 .cidade-endereco{
     margin-bottom: 0;
-    
+    color: var(--color-black-heavy);
 }
 
 .badge-total-carrinho{
