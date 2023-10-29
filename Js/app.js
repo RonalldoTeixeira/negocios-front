@@ -10,10 +10,15 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0 ;
 var VALOR_ENTREGA = 5;
 
+var CELULAR_EMPRESA = '551789994643035';
+
 cardapio.eventos = {
 
     init: () => {
         cardapio.metodos.obterItensCardapio();
+        cardapio.metodos.carregarBotaoLigar();
+        cardapio.metodos.carregarBotaoReserva();
+        
     }
 };
 
@@ -146,7 +151,7 @@ cardapio.metodos = {
       $(".container-total-carrinho").removeClass('hidden')
       
     } else {
-      $(".botao-carrinho").addClasse('hidden');
+      $(".botao-carrinho").addClass('hidden');
       $(".container-total-carrinho").addClass('hidden')
     }
     $(".badge-total-carrinho").html(total)
@@ -338,7 +343,7 @@ carregarEndereco: () => {
   cardapio.metodos.carregarEtapa(2)
 
 },
-
+// API ViaCEP
 buscarCep: () => {
 
   //cria a variável com o valor do cep
@@ -383,7 +388,7 @@ buscarCep: () => {
 
 
 },
-// validação antes de prosseguir para a etapa
+// validação antes de prosseguir para a etapa 3
 resumoPedido: ()  => {
 
   let cep = $("#txtCEP").val().trim();
@@ -453,7 +458,6 @@ resumoPedido: ()  => {
 
 },
 
-
 // carrega a etapa de resumo do pedido
 carregarResumo: () => {
 
@@ -472,7 +476,83 @@ carregarResumo: () => {
   $("#resumoEndereco").html(`${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`);
   $("#cidadeEndereco").html(`${MEU_ENDERECO.cidade} -${MEU_ENDERECO.uf} / ${MEU_ENDERECO.cep}, ${MEU_ENDERECO.complemento}`);
 
+
+  cardapio.metodos.finalizarPedido();
+  // 551789994643035
 },
+
+// Atualizar o link do botão do whatsApp
+finalizarPedido: () => {
+
+  if (MEU_CARRINHO.length > 0 && MEU_ENDERECO != null) {
+    
+    var texto = 'Olá gostaria de fazer um pedido:';
+    texto += `\n*Itens do pedido:*\n\n\${itens}`
+    texto += `\n*Endereço de entrega:*`
+    texto += `\n${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`;
+    texto += `\n${MEU_ENDERECO.cidade}-${MEU_ENDERECO.uf} / ${MEU_ENDERECO.cep} ${MEU_ENDERECO.complemento}`;
+    texto += `\n\n*Total (com entrega): R$ ${(VALOR_CARRINHO + VALOR_ENTREGA).toFixed(2).replace('.', ',')}*`;
+
+
+    var itens = '';
+
+    $.each(MEU_CARRINHO, (i, e) => {
+
+      itens += `*${e.qntd}x*${e.name} ....... R$ ${e.price.toFixed(2).replace('.', ',')} \n`;
+
+      // Último Item
+      if ((i + 1) == MEU_CARRINHO.length) {
+        
+        texto = texto.replace(/\${itens}/g, itens)
+
+        // converte a URl
+        let encode = encodeURI(texto);
+        let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
+
+        $("#btnEtapaResumo").attr('href', URL);
+        
+      }
+
+
+      // 
+
+    })
+  }
+},
+
+// Carrega o Link do botão reserva
+carregarBotaoReserva: () => {
+
+  var texto = 'Olá! Gostaria de fazer uma *reserva'
+
+    let encode = encodeURI(texto);
+    let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
+
+    $("#btnReserva").attr('href', URL)
+
+},
+
+carregarBotaoLigar: () => {
+
+  $("#btnLigar").attr('href', `tel:${CELULAR_EMPRESA}`)
+},
+
+//abri o depoimento
+abrirDepoimento:(depoimento) => {
+
+  $("#depoimento-1").addClass('hidden');
+  $("#depoimento-2").addClass('hidden');
+  $("#depoimento-3").addClass('hidden');
+
+  $('#btnDepoimento-1').removeClass('active');
+  $('#btnDepoimento-2').removeClass('active');
+  $('#btnDepoimento-3').removeClass('active');
+
+  $("#depoimento-" + depoimento).removeClass('hidden');
+  $("#btnDepoimento-" + depoimento).addClass('active')
+
+},
+
 
   //mensagens
   mensagem: (texto, cor ='red', tempo = 3500) => {
@@ -496,7 +576,7 @@ carregarResumo: () => {
 };
 cardapio.templates = {
   item: `
-        <div class="col-3 mb-5">
+        <div class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 animated fadeInUp ">
             <div class="card card-item" id="\${id}" >
                 <div class="img-produto">
                         <img src="\${img}" />
@@ -529,7 +609,7 @@ cardapio.templates = {
         <span class="btn-menos" onclick="cardapio.metodos.diminuirQuantidadeCarrinho('\${id}')"><i class="fas fa-minus"></i></span>
         <span class="add-numero-itens" id="qntd-carrinho-\${id}">\${qntd}</span>
         <span class="btn-mais" onclick="cardapio.metodos.aumentarQuantidadeCarrinho('\${id}')"><i class="fas fa-plus"></i></span>
-        <span class="btn btn-remove" onclick="cardapio.metodos.removerItemCarrinho('\${id}')"><i class="fa fa-times"></i></span>
+        <span class="btn btn-remove no-mobile" onclick="cardapio.metodos.removerItemCarrinho('\${id}')"><i class="fa fa-times"></i></span>
 
       </div>                          
    </div>   
